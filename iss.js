@@ -2,11 +2,7 @@ const request = require("request");
 
 const fetchMyIP = function(callback) {
   // use request to fetch IP address from JSON API
-  request(`https://api.ipify.org?format=jsonp&callback=getip`, function(
-    error,
-    response,
-    body
-  ) {
+  request("https://api.ipify.org?format=json", function(error, response, body) {
     if (error) {
       callback(error, null);
       return;
