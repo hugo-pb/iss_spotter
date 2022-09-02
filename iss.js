@@ -53,7 +53,18 @@ const nextISSTimesForMyLocation = function(callback) {
       console.log("It didn't work!", error);
       return;
     }
-    console.log("It worked! Returned IP:", ip);
+
+    fetchCoordsByIP(ip, (error, data) => {
+      if (!data) {
+        console.log("It didn't work!", error);
+        return;
+      }
+      let cor = {
+        latitude: data.latitude,
+        longitude: data.longitude
+      };
+      console.log(cor);
+    });
   });
 };
 module.exports = {
