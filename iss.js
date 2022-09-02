@@ -43,7 +43,7 @@ const fetchISSFlyOverTimes = function(coords, callback) {
         callback(Error(msg), null);
         return;
       }
-      callback(null, data);
+      callback(null, data.response);
     }
   );
 };
@@ -63,7 +63,13 @@ const nextISSTimesForMyLocation = function(callback) {
         latitude: data.latitude,
         longitude: data.longitude
       };
-      console.log(cor);
+      fetchISSFlyOverTimes(cor, (error, data2) => {
+        if (error) {
+          console.log("It didn't work!", error);
+          return;
+        }
+        callback(error, data2);
+      });
     });
   });
 };
