@@ -38,6 +38,11 @@ const fetchISSFlyOverTimes = function(coords, callback) {
         callback(error, null);
         return;
       }
+      if (response.statusCode !== 200) {
+        const msg = `Status Code ${response.statusCode} when fetching data. Response: ${body}`;
+        callback(Error(msg), null);
+        return;
+      }
       callback(null, data);
     }
   );
